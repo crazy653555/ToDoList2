@@ -11,10 +11,12 @@ export class AppComponent {
 
   todos: any[] = [];
 
-  addTodo($event) {
-    console.log($event);
-    if ($event.target.value) {
-      this.todos = this.todos.concat($event.target.value);
+  todo: string = '';
+
+  addTodo() {
+    if (this.todo) {
+      this.todos = this.todos.concat(this.todo);
+      this.todo = '';
     }
   }
 
