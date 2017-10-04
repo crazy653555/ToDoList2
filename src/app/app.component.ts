@@ -41,4 +41,8 @@ export class AppComponent {
       item.done = this.isToggleAll;
     });
   }
+
+  removeTodo($event) {
+    this.todos = this.todos.filter(item => item !== $event);
+  }
 }
