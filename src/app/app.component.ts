@@ -6,16 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  inputHint = "What needs to be done???";
+  inputHint = 'What needs to be done?';
   colspan = 3;
 
   todos: any[] = [];
 
-  todo: string = '';
+  todo = '';
 
   addTodo() {
     if (this.todo) {
-      this.todos = this.todos.concat(this.todo);
+      let newTodo = {
+        text : this.todo,
+        done : false
+      };
+      this.todos = this.todos.concat(newTodo);
       this.todo = '';
     }
   }
