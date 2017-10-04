@@ -15,13 +15,17 @@ export class AppComponent {
 
   addTodo() {
     if (this.todo) {
-      let newTodo = {
-        text : this.todo,
-        done : false
+      const newTodo = {
+        text: this.todo,
+        done: false
       };
       this.todos = this.todos.concat(newTodo);
       this.todo = '';
     }
+  }
+
+  clearCompleted() {
+    this.todos = this.todos.filter(item => !item.done);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -16,17 +16,15 @@ export class FooterComponent implements OnInit {
     this._todo = value;
     this.tooMore = this.todos.length > 5;
   }
-  get todos(){
+  get todos() {
     return this._todo;
   }
-
-
 
   constructor() { }
 
   ngOnInit() {
   }
 
-
-
+  // tslint:disable-next-line:member-ordering
+  @Output() clearBtnClick = new EventEmitter();
 }

@@ -24,7 +24,7 @@
   </section>
 
   <!-- This footer should hidden by default and shown when there are todos -->
-  <app-footer [data]="todos"></app-footer>
+  <app-footer [data]="todos" (clearBtnClick)="clearCompleted()"></app-footer>
 </section>
 
 <footer class="info">
