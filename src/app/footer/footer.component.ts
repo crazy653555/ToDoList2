@@ -7,7 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  @Input() todos = [];
+  // tslint:disable-next-line:no-input-rename
+  @Input('data') todos = [];
   constructor() { }
 
   ngOnInit() {
