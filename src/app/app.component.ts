@@ -13,6 +13,8 @@ export class AppComponent {
 
   todo = '';
 
+  filterType = 'All';
+
   addTodo() {
     if (this.todo) {
       const newTodo = {
@@ -28,4 +30,7 @@ export class AppComponent {
     this.todos = this.todos.filter(item => !item.done);
   }
 
+  updateFilterType($event) {
+    this.filterType = $event;
+  }
 }

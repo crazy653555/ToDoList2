@@ -10,6 +10,9 @@ export class FooterComponent implements OnInit {
 
   tooMore = false;
   private _todo = [];
+  FilterType = 'All';
+
+  @Output() filterTypeChange = new EventEmitter<string>();
 
   @Input('data')
   set todos(value) {
@@ -29,6 +32,11 @@ export class FooterComponent implements OnInit {
   @Output() clearBtnClick = new EventEmitter();
 
   logFromFooter() {
-    console.log('123456 footer function');
   }
+
+  changeFilterType(value) {
+    this.FilterType = value;
+    this.filterTypeChange.emit(value);
+  }
+
 }
