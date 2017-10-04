@@ -24,7 +24,7 @@
   </section>
 
   <!-- This footer should hidden by default and shown when there are todos -->
-  <app-footer [data]="todos" (clearBtnClick)="clearCompleted()"></app-footer>
+  <app-footer [data]="todos" (clearBtnClick)="clearCompleted()" #collFooter></app-footer>
 </section>
 
 <footer class="info">
@@ -42,3 +42,5 @@
     <td>One Column</td>
   </tr>
 </table>
+
+<button (click)="collFooter.logFromFooter()">log for footer</button>

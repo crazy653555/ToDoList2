@@ -27,4 +27,8 @@ export class FooterComponent implements OnInit {
 
   // tslint:disable-next-line:member-ordering
   @Output() clearBtnClick = new EventEmitter();
+
+  logFromFooter() {
+    console.log('123456 footer function');
+  }
 }
