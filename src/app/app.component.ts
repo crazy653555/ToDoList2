@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   isToggleAll = true;
 
 
-  constructor(private dataSvc:DataService) {
+  constructor(private dataSvc: DataService) {
 
   }
 
@@ -66,15 +66,32 @@ export class AppComponent implements OnInit {
   }
 
   removeTodo(todo) {
-    console.log('select:' + todo.id );
-      this.dataSvc.removeTodo(todo)
+    console.log('select:' + todo.id);
+    this.dataSvc.removeTodo(todo)
       .subscribe(data => {
         this.todos = this.todos.filter(item => item !== todo);
       });
   }
-z
-  updateTodo(todo){
+  z
+  updateTodo(todo) {
     this.dataSvc.updateTodo(todo)
-    .subscribe();
+      .subscribe();
+  }
+
+  enterEditMode(todo) {
+    console.log(todo);
+    todo.editText = todo.text;
+    todo.isEditMode = true;
+  }
+
+  leaveEditMode(todo) {
+    delete todo.editText;
+    delete todo.isEditMode;
+    this.updateTodo(todo);
+  }
+
+  saveEdit(todo){
+    todo.text = todo.editText;
+    this.leaveEditMode(todo);
   }
 }
