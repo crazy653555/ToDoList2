@@ -1,10 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import 'rxjs/add/operator/do'
+import { NotifyService } from './notify.service';
+
+
 
 @Injectable()
 export class DataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private notifySvc: NotifyService
+  ) { }
 
   private apiBase = 'http://localhost:3000/todos';
 
@@ -13,14 +20,24 @@ export class DataService {
   }
 
   addTodo(todo) {
-    return this.http.post(this.apiBase, todo);
+    return this.http.post(this.apiBase, todo)
+      .do(data => {
+        this.notifySvc.notify(`已經 ${todo.text} 新增到 DB`);
+      });
   }
 
-  removeTodo(todo){
-    return this.http.delete(this.apiBase,todo);
+  removeTodo(todo) {
+    return this.http.delete(`${this.apiBase}/${todo.id}`)
+      .do(data => {
+        this.notifySvc.notify(`已將 ${todo.text} 從 DB 刪除`);
+      });
   }
 
-  updateTodo(todo){
-    return this.http.put(`${this.apiBase}/${todo.id}`,todo);
+  updateTodo(todo) {
+    return this.http.put(`${this.apiBase}/${todo.id}`, todo)
+      .do(data => {
+        this.notifySvc.notify(`已將 ${todo.text} 從 DB 更新`);
+
+      });
   }
 }

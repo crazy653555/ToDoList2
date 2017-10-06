@@ -22,7 +22,8 @@ export class AppComponent implements OnInit {
   isToggleAll = true;
 
 
-  constructor(private dataSvc: DataService) {
+  constructor(private dataSvc: DataService
+  ) {
 
   }
 
@@ -75,7 +76,9 @@ export class AppComponent implements OnInit {
   z
   updateTodo(todo) {
     this.dataSvc.updateTodo(todo)
-      .subscribe();
+      .subscribe(data => {
+        this.todos = [...this.todos];
+      });
   }
 
   enterEditMode(todo) {
@@ -90,7 +93,7 @@ export class AppComponent implements OnInit {
     this.updateTodo(todo);
   }
 
-  saveEdit(todo){
+  saveEdit(todo) {
     todo.text = todo.editText;
     this.leaveEditMode(todo);
   }
