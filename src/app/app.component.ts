@@ -42,7 +42,8 @@ export class AppComponent implements OnInit {
 
       this.http.post(this.apiBase, newTodo)
         .subscribe(data => {
-          this.todos = this.todos.concat(newTodo);
+          console.log(data);
+          this.todos = this.todos.concat(data);
           this.todo = '';
         });
     }
@@ -59,6 +60,7 @@ export class AppComponent implements OnInit {
   toggleAll() {
     this.todos.forEach(item => {
       item.done = this.isToggleAll;
+      this.updateTodo(item);
     });
   }
 
@@ -66,8 +68,12 @@ export class AppComponent implements OnInit {
     console.log('select:' + todo.id );
     this.http.delete(`${this.apiBase}/${todo.id}`)
       .subscribe(data => {
-        console.log('delete ok');
         this.todos = this.todos.filter(item => item !== todo);
       });
+  }
+z
+  updateTodo(todo){
+    this.http.put(`${this.apiBase}/${todo.id}`,todo)
+    .subscribe();
   }
 }
